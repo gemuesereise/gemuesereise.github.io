@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Gem&uuml;se aus aller Welt</title>
+<meta name="author" content="slash">
+<meta name="editor" content="html-editor phase 5">
+<link rel="stylesheet" href="styles.css">
+</head>
+<h1>Gem&uuml;se aus aller Welt</h1>
+<p>Das Gem&uuml;se, dass du im Supermarkt kaufen kannst, kommt nicht immer aus deiner Region oder Deutschland. Viele Sorten legen
+auf dem Weg zu dir tausende Kilometer zur&uuml;ck. Die Flugzeuge, LKWs und Transporter produzieren dabei CO2, welches sich
+nicht gut auf die Umwelt auswirkt.
+<br> Auf dieser Seite kannst du berechnen, wie viel CO2 auf der Reise produziert wird und wie
+viele B&auml;ume daf&uuml;r gepflanzt werden m&uuml;ssen.</p>
+<?php
+    echo ("Wir fangen mit PHP Code an.");
+?>
+<h3>Welches Transportmittel wurde genutzt?</h3>
+<div class="row">
+  <div class="column3">
+         <img src="LKW.png" alt="Das Bild konnte nicht geladen werden." height="80" width="160">
+         <br>
+         <label class="container">LKW
+         <input type="radio" name="radio" value="LKW" id="lkw">
+         <span class="checkmark"></span>
+         </label>
+  </div>
+  <div class="column3">
+         <img src="Flugzeug.png" alt="Das Bild konnte nicht geladen werden." height="80" width="160">
+         <br>
+         <label class="container">Flugzeug
+         <input type="radio" name="radio" value="flugzeug" id="flugzeug">
+         <span class="checkmark"></span>
+         </label>
+  </div>
+  <div class="column3">
+         <img src="Transporter.png" alt="Das Bild konnte nicht geladen werden." height="80" width="160">
+         <br>
+         <label class="container">Transporter
+         <input type="radio" name="radio" value="transporter" id="transporter">
+         <span class="checkmark"></span>
+         </label>
+  </div>
+<h3>Welche Entfernung wurde zur&uuml;ckgelegt?</h3>
+<p>Klicke auf die folgende Website und gib zuerst das Land an, aus dem das Gem&uuml;se kommt und dann deine Stadt. Gib danach die
+errechnete Entfernung in das wei&szlig;e Feld unten ein. Tippe danach auf <b>Berechnen</b>.
+<br>
+<a href="http://www.luftlinie.org" target="_blank">Entfernung herausfinden</a>
+</p>
+<form id="entfernung">
+<div id="entfernung">Entfernung: <input name="distance" type="number" size="20">km</div>
+</form>
+<p><button onclick="treibstoff()">Berechnen</button></p>
+
+<div class="row">
+  <div class="column2">
+    <p><b>Wie viel CO2 wurde produziert?</b></p>
+    <p id="demo2"> </p>
+  </div>
+  <div class="column2">
+    <p><b>Wie viele B&auml;ume speichern das CO2</b></p>
+    <p id="demo3"> </p>
+  </div>
+</div>
+<script language="javascript">
+
+
+function treibstoff()
+{
+var x,y,vlkw,vfz,vtp,ts,clkw,cfz,ctp,co,llkw,lfz,ltp,baum;
+x=document.getElementById("entfernung") ;
+y=x.elements["distance"].value;
+vlkw=38;
+vfz=910;
+vtp=8;
+clkw=73;
+cfz=3800;
+ctp=180;
+llkw=26;
+lfz=50;
+ltp=1;
+if(document.getElementById("lkw").checked)
+        {
+            ts=(y*vlkw)/100;
+            co=Math.round((clkw*llkw)/1000*y);
+            document.getElementById("demo2").innerHTML=co+" kg";
+            baum=Math.ceil(co/1000/1.8);
+            document.getElementById("demo3").innerHTML=baum+" Fichte(n), die 25m hoch sind";
+        }
+
+else if(document.getElementById("flugzeug").checked)
+        {
+            ts=(y*vfz)/100;
+            co=Math.round((cfz*lfz)/1000*y);
+            document.getElementById("demo2").innerHTML=co+" kg";
+            baum=Math.ceil(co/1000/1.8);
+            document.getElementById("demo3").innerHTML=baum+" Fichte(n), die 25m hoch sind";
+        }
+
+else if(document.getElementById("transporter").checked)
+        {
+            ts=(y*vtp)/100;
+            co=Math.round((ctp*ltp)/1000*y);
+            document.getElementById("demo2").innerHTML=co+" kg";
+            baum=Math.ceil(co/1000/1.8);
+            document.getElementById("demo3").innerHTML=baum+" Fichte(n), die 25m hoch sind";
+        }
+
+}
+
+</script>
+</body>
+</html>
